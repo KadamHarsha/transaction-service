@@ -30,4 +30,9 @@ public class TransactionController {
         String result = transactionService.deleteTransaction(transactionId);
         return new ResponseEntity<String>(result, HttpStatus.OK);
     }
+    @PostMapping("accounts/{accountId}/transactions")
+    public ResponseEntity<com.maveric.transactionservice.dto.TransactionDto> createTransaction(@PathVariable String accountId, @RequestBody com.maveric.transactionservice.dto.TransactionDto transactionDto) {
+        com.maveric.transactionservice.dto.TransactionDto transactionDtoResponse = transactionService.createTransaction(transactionDto);
+        return new ResponseEntity<com.maveric.transactionservice.dto.TransactionDto>(transactionDtoResponse, HttpStatus.OK);
+    }
 }
