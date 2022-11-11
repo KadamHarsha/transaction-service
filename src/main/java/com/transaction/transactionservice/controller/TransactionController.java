@@ -16,11 +16,9 @@ public class TransactionController {
    @Autowired
     TransactionService transactionService;
 
-    /*List of total transaction*/
-    @GetMapping("accounts/{accountId}/transactions")
-    public ResponseEntity<List<TransactionDto>> getTransactions(@PathVariable String accountId, @RequestParam(defaultValue = "0") Integer page,
-                                                                @RequestParam(defaultValue = "10") Integer pageSize) {
-        List<TransactionDto> transactionDtoResponse = transactionService.getTransactions();
-        return new ResponseEntity<List<TransactionDto>>(transactionDtoResponse, HttpStatus.OK);
-    }
+    /*List of transaction using transaction ID*/
+    @GetMapping("accounts/{accountId}/transactions/{transactionId}")
+    public ResponseEntity<TransactionDto> getTransactionDetails(@PathVariable String accountId, @PathVariable String transactionId) {
+        TransactionDto transactionDtoResponse = transactionService.getTransactionById(transactionId);
+        return new ResponseEntity<TransactionDto>(transactionDtoResponse, HttpStatus.OK);
 }
