@@ -21,5 +21,4 @@ public class TransactionController {
     public ResponseEntity<TransactionDto> getTransactionDetails(@PathVariable String accountId, @PathVariable String transactionId) {
         TransactionDto transactionDtoResponse = transactionService.getTransactionById(transactionId);
         return new ResponseEntity<TransactionDto>(transactionDtoResponse, HttpStatus.OK);
-    }
 }
