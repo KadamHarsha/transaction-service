@@ -16,11 +16,11 @@ public class TransactionController {
    @Autowired
     TransactionService transactionService;
 
-    /*delete transaction based on transaction id*/
-    @DeleteMapping("accounts/{accountId}/transactions/{transactionId}")
-    public ResponseEntity<String> deleteTransaction(@PathVariable String accountId,@PathVariable String transactionId) {
-        String result = transactionService.deleteTransaction(transactionId);
-        return new ResponseEntity<String>(result, HttpStatus.OK);
+    /*List of total transaction*/
+    @GetMapping("accounts/{accountId}/transactions")
+    public ResponseEntity<List<TransactionDto>> getTransactions(@PathVariable String accountId, @RequestParam(defaultValue = "0") Integer page,
+                                                                @RequestParam(defaultValue = "10") Integer pageSize) {
+        List<TransactionDto> transactionDtoResponse = transactionService.getTransactions();
+        return new ResponseEntity<List<TransactionDto>>(transactionDtoResponse, HttpStatus.OK);
     }
-
 }
