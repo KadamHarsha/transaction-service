@@ -16,9 +16,12 @@ public class TransactionController {
    @Autowired
     TransactionService transactionService;
 
-    /*List of transaction using transaction ID*/
-    @GetMapping("accounts/{accountId}/transactions/{transactionId}")
-    public ResponseEntity<TransactionDto> getTransactionDetails(@PathVariable String accountId, @PathVariable String transactionId) {
-        TransactionDto transactionDtoResponse = transactionService.getTransactionById(transactionId);
+       /*create transaction*/
+    @PostMapping("accounts/{accountId}/transactions")
+    public ResponseEntity<TransactionDto> createTransaction(@PathVariable String accountId, @RequestBody TransactionDto transactionDto) {
+        System.out.println("-----create Transaction 1-----");
+        TransactionDto transactionDtoResponse = transactionService.createTransaction(transactionDto);
+        System.out.println("-----create Transaction 2-----");
         return new ResponseEntity<TransactionDto>(transactionDtoResponse, HttpStatus.OK);
+    }
 }
